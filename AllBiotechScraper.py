@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import csv
 
 # Headers to mimic a browser request
 headers = {
@@ -44,24 +45,26 @@ def scrape_biotech_tickers(url):
         print(f"Error parsing the page: {e}")
         return []
 
-def write_dictionary_to_file(biostocks, filename="biotickers.txt"):
+def write_list_to_file(biostocks, filename="biotickers.csv"):
     """
     Write the list to a text file in the specified format.
     """
-    with open(filename, 'w') as f:
-        for ticker in (biostocks):
-            f.write(f"{ticker},")
+
+    with open(filename, 'w', newline='') as tickercsv:
+        wr = csv.writer(tickercsv, quoting=csv.QUOTE_ALL)
+        wr.writerow(biostocks)
+
     print(f"List written to {filename}")
     print(f"Total tickers scraped: {len(biostocks)}")
 
 # URL to scrape
 url = "https://stockanalysis.com/stocks/industry/biotechnology/"
 
-# Scrape the tickers and create the dictionary
+# Scrape the tickers and create the list
 biostocks = scrape_biotech_tickers(url)
 
-# Write the dictionary to a file if scraping was successful
+# Write the list to a file if scraping was successful
 if biostocks:
-    write_dictionary_to_file(biostocks)
+    write_list_to_file(biostocks)
 else:
     print("No tickers were scraped. Check the URL or page structure.")
