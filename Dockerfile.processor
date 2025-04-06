@@ -1,0 +1,21 @@
+# Use an official Python runtime as the base image
+FROM python:3.11-slim
+
+# Set working directory in container
+WORKDIR /app
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    gcc \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies
+RUN pip install --no-cache-dir requests
+RUN pip install --no-cache-dir beautifulsoup4
+
+# Run the scraping script (can be replaced with a scheduler)
+CMD ["python", "TickerScraper.py"]
