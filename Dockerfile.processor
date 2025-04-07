@@ -16,6 +16,8 @@ RUN apt-get update && apt-get install -y \
 # Install Python dependencies
 RUN pip install --no-cache-dir requests
 RUN pip install --no-cache-dir beautifulsoup4
+RUN pip install --no-cache-dir selenium
+RUN pip install --no-cache-dir webdriver-manager
 
 # Run the scraping script (can be replaced with a scheduler)
 CMD ["python", "TickerScraper.py"]
