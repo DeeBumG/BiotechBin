@@ -14,10 +14,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
-RUN pip install --no-cache-dir requests
-RUN pip install --no-cache-dir beautifulsoup4
-RUN pip install --no-cache-dir selenium
-RUN pip install --no-cache-dir webdriver-manager
+RUN pip install --no-cache-dir requests beautifulsoup4 selenium webdriver-manager pymysql yfinance
 
 # Run the scraping script (can be replaced with a scheduler)
-CMD ["python", "TickerScraper.py"]
+CMD ["python", "getBioTickers.py"]
