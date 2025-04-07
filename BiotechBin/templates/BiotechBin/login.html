@@ -1,0 +1,10 @@
+{% extends 'BiotechBin/base.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+    <h1>Login</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" style="background-color: #024950; color: #AFDDE5; padding: 0.5rem 1rem; border: none; border-radius: 4px;">Login</button>
+    </form>
+{% endblock %}
