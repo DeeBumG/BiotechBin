@@ -60,7 +60,7 @@ services:
       context: .
       dockerfile: Dockerfile.processor
     volumes:
-      - ./processor:/app  # Mount scraping scripts for development
+      - ./processor:/app
     depends_on:
       db:
         condition: service_healthy

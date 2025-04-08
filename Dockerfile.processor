@@ -12,9 +12,10 @@ ENV PYTHONUNBUFFERED 1
 RUN apt-get update && apt-get install -y \
     gcc \
     && rm -rf /var/lib/apt/lists/*
+    
 
 # Install Python dependencies
 RUN pip install --no-cache-dir requests beautifulsoup4 selenium webdriver-manager pymysql yfinance
 
 # Run the scraping script (can be replaced with a scheduler)
-CMD ["python", "getBioTickers.py"]
+CMD ["python", "scraper.py"]

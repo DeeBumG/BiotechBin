@@ -1,27 +1,36 @@
 {% extends 'BiotechBin/base.html' %}
+
 {% block title %}{{ title }}{% endblock %}
+
 {% block content %}
-    <h1>All Tickers</h1>
-    {% for ticker in tickers %}
-        <h2>{{ ticker.symbol }}</h2>
-        <ul>
-        {% for strike in ticker.strike_prices.all %}
-            <li>Strike: {{ strike.strike_price }}
-                <ul>
-                {% for exp in strike.expiration_dates.all %}
-                    <li>Exp: {{ exp.expiration_date }}
-                        <ul>
-                        {% for price in exp.date_prices.all %}
-                            <li>{{ price.date_collected }}: High={{ price.high_price }}, Low={{ price.low_price }}, End={{ price.end_price }}</li>
-                        {% endfor %}
-                        </ul>
-                    </li>
-                {% endfor %}
-                </ul>
-            </li>
-        {% endfor %}
-        </ul>
+<h1>All Tickers</h1>
+
+{% for ticker in tickers %}
+    <h2>{{ ticker.symbol }}</h2>
+    <ul>
+    {% for option in ticker.options.all %}
+        <li>
+            {{ option.option_type }} Strike: {{ option.strike_price }} Exp: {{ option.expiration_date }}
+            <ul>
+            {% for price in option.prices.all %}
+                <li>
+                    {{ price.date_collected }}:
+                    Open={{ price.open_price }},
+                    High={{ price.high_price }},
+                    Low={{ price.low_price }},
+                    End={{ price.end_price }},
+                    Volume={{ price.volume }}
+                </li>
+            {% empty %}
+                <li>No price data available.</li>
+            {% endfor %}
+            </ul>
+        </li>
     {% empty %}
-        <p>No tickers available.</p>
+        <li>No options available for {{ ticker.symbol }}.</li>
     {% endfor %}
+    </ul>
+{% empty %}
+    <p>No tickers available.</p>
+{% endfor %}
 {% endblock %}

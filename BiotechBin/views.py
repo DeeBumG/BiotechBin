@@ -7,8 +7,13 @@ def home(request):
     return render(request, 'BiotechBin/home.html', {'title': 'Home'})
 
 def tickers(request):
-    tickers = Ticker.objects.all().prefetch_related('strike_prices__expiration_dates__date_prices')
-    return render(request, 'BiotechBin/tickers.html', {'tickers': tickers, 'title': 'All Tickers'})
+    tickers = Ticker.objects.all().prefetch_related(
+        'options__prices'  # prefetch options AND their prices
+    )
+    return render(request, 'BiotechBin/tickers.html', {
+        'tickers': tickers,
+        'title': 'All Tickers',
+    })
 
 def events(request):
     # Placeholder for upcoming events (e.g., expiration dates)
