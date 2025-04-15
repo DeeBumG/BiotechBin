@@ -7,6 +7,9 @@ WORKDIR /app
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+ENV EMAIL_USERNAME biotechbin@gmail.com
+ENV EMAIL_PASSWORD REDACTED
+ENV TRADIER_API_KEY REDACTED
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -15,7 +18,7 @@ RUN apt-get update && apt-get install -y \
     
 
 # Install Python dependencies
-RUN pip install --no-cache-dir requests beautifulsoup4 selenium webdriver-manager pymysql yfinance
+RUN pip install --no-cache-dir requests beautifulsoup4 selenium pymysql yfinance
 
 # Run the scraping script (can be replaced with a scheduler)
-CMD ["python", "scraper.py"]
+CMD ["python", "financeInsert.py"]

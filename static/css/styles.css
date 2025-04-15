@@ -5,11 +5,12 @@
     --accent: #964734;         /* Rust red */
     --primary-light: #0FA4AF;  /* Bright teal */
     --background-light: #AFDDE5; /* Light teal */
+    --white: #ffffff;          /* White */
 }
 
 /* General Styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     background-color: var(--background-light);
@@ -18,48 +19,93 @@ body {
 
 /* Navigation Bar */
 .navbar {
-    background-color: var(--primary-light);
-    padding: 1rem;
+    background-color: var(--white);
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    justify-content: space-between;
 }
 
-.navbar-brand a {
-    color: var(--accent);
-    font-size: 1.5rem;
-    text-decoration: none;
+.navbar-logo {
+    font-size: 1.8rem;
     font-weight: bold;
+    color: var(--accent);
+    text-decoration: none;
 }
 
-.navbar-links {
+.navbar-menu {
     list-style: none;
+    display: flex;
+    gap: 2rem;
     margin: 0;
     padding: 0;
-    display: flex;
 }
 
-.navbar-links li {
-    margin-left: 2rem;
-}
-
-.navbar-links a {
-    color: var(--secondary-dark);
+.navbar-menu li a {
     text-decoration: none;
+    color: var(--secondary-dark);
     font-size: 1.1rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.navbar-links a:hover {
-    color: var(--accent);
+.navbar-menu li a:hover {
+    background-color: var(--primary-light);
+    color: var(--white);
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+body {
+display: flex;
+flex-direction: column;
 }
 
 /* Main Content */
 .content {
     padding: 2rem;
-    /* background-color: #AFDDE5; */
     margin: 2rem auto;
     max-width: 1200px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: var(--white);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
 }
+
+/* Footer */
+.footer {
+    background-color: var(--primary-dark);
+    padding: 1rem 2rem;
+    text-align: center;
+    color: var(--white);
+    margin-top: 2rem;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Responsive (Mobile) */
+@media (max-width: 768px) {
+    .navbar-menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+}
+  
