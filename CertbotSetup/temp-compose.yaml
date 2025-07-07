@@ -1,0 +1,27 @@
+nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx-temp.conf:/etc/nginx/nginx.conf  # Use temp config
+      - ./staticfiles:/static
+      - ./certbot/www:/var/www/certbot
+      - ./certbot/conf:/etc/letsencrypt
+    depends_on:
+      - app
+    networks:
+      - network1
+    restart: unless-stopped
+
+#replace the nginx part with this, run docker compose up --build, and run:
+#
+# Get the SSL certificate
+#
+#docker compose exec certbot certbot certonly \
+#  --webroot \
+#  --webroot-path=/var/www/certbot \
+#  --email biotechbin@gmail.com \
+#  --agree-tos \
+#  --no-eff-email \
+#  -d biotechbin.com

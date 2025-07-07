@@ -6,6 +6,7 @@
     <title>{% block title %}BioTechBin{% endblock %}</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -18,13 +19,20 @@
                 <li><a href="{% url 'tickers' %}">All Tickers</a></li>
                 <li><a href="{% url 'events' %}">Upcoming Events</a></li>
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    <li><a href="{% url 'logout' %}" class="btn-logout">Logout</a></li>
                 {% else %}
-                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'login' %}" class="btn-login">Login</a></li>
                 {% endif %}
             </ul>
         </div>
     </nav>
+
+    <!-- Site Title Block -->
+    <section class="title-block">
+        <div class="title-container">
+            <h1 class="site-title">BiotechBin</h1>
+        </div>
+    </section>
 
     <!-- Main Content -->
     <main class="content">
