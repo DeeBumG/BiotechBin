@@ -1,3 +1,6 @@
+Project for Cloud Computing course at USMA. AI was used to build templates for most files.
+Coordination between all parts of project and determination of which parts/files were needed completed without AI.
+
 To setup certbot: 
 
 1. move temp-compose.yaml and nginx-temp.conf to BiotechBin directory and run 'docker compose up --build'
